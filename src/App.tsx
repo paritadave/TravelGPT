@@ -17,6 +17,16 @@ export default function App() {
   // Navigation
   const [activePortal, setActivePortal] = useState<'customer' | 'agent' | 'management' | 'admin'>('customer');
 
+  // Check if API Key is available on backend
+  const [hasApiKey, setHasApiKey] = useState<boolean | null>(null);
+
+  React.useEffect(() => {
+    fetch('/api/config')
+      .then(res => res.json())
+      .then(data => setHasApiKey(data.hasApiKey))
+      .catch(() => setHasApiKey(false));
+  }, []);
+
   // Shared platform data state (Acts as central database)
   const [activeItinerary, setActiveItinerary] = useState<Itinerary | null>(null);
   const [activeBooking, setActiveBooking] = useState<ActiveBooking | null>(null);
@@ -316,7 +326,7 @@ export default function App() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
         
         {/* Dynamic Warning Notification if GEMINI API KEY is missing */}
-        {!process.env.GEMINI_API_KEY && (
+        {hasApiKey === false && (
           <div className="mb-6 p-3.5 bg-indigo-50/70 border border-indigo-150 rounded-xl flex items-center justify-between text-xs text-indigo-950 font-medium max-w-7xl">
             <div className="flex items-center gap-2">
               <Bot className="w-5 h-5 text-indigo-600" />

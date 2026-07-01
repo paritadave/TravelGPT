@@ -2,7 +2,6 @@ import express from "express";
 import path from "path";
 import dotenv from "dotenv";
 import { GoogleGenAI, Type } from "@google/genai";
-import { createServer as createViteServer } from "vite";
 
 // Load environment variables
 dotenv.config();
@@ -86,6 +85,11 @@ async function sendChatMessageWithFallback(
 // -------------------------------------------------------------
 // API Endpoints
 // -------------------------------------------------------------
+
+// 0. Configuration check endpoint to verify server-side keys
+app.get("/api/config", (req, res) => {
+  res.json({ hasApiKey: !!process.env.GEMINI_API_KEY });
+});
 
 // 1. Discovery / Itinerary Generator endpoint (Structured JSON output)
 app.post("/api/gemini/inspire", async (req, res) => {
@@ -350,6 +354,7 @@ function getFallbackItinerary(budget: any, familySize: any, interests: any[]): a
 // -------------------------------------------------------------
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
