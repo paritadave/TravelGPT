@@ -372,9 +372,31 @@ export default function App() {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-white border-t border-slate-100 py-6 mt-12 text-center text-xs text-slate-400 font-medium">
-        <p>TravelGPT • AI-Powered Travel Operations & Customer Experience B2B SaaS Platform • Curated for Enterprise Partners</p>
-        <p className="mt-1 text-[10px]">Cloud Run Sandbox Ingress Inbound Port: 3000 • Powered by Gemini Pro Core models</p>
+      <footer className="bg-slate-50 border-t border-slate-150 py-8 mt-16 text-center text-xs text-slate-500">
+        <div className="max-w-4xl mx-auto px-4 space-y-4">
+          <p className="text-slate-400 font-semibold uppercase tracking-wider text-[10px]">TravelGPT Platform Architecture</p>
+          
+          {/* Tech Stack Pills */}
+          <div className="flex flex-wrap items-center justify-center gap-2 max-w-2xl mx-auto">
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">React 18</span>
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">Vite</span>
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">TypeScript</span>
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">Tailwind CSS</span>
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">Gemini AI Models</span>
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">Lucide Icons</span>
+            <span className="bg-white border border-slate-200 text-slate-700 px-2.5 py-1 rounded-full text-[11px] font-medium font-mono">Recharts</span>
+          </div>
+
+          <div className="border-t border-slate-200/65 w-16 mx-auto pt-2"></div>
+
+          <p className="font-bold text-slate-700">
+            Designed & Built by <span className="text-indigo-600 bg-indigo-50 px-2.5 py-1 rounded-md font-extrabold tracking-tight">Parita Dave</span>
+          </p>
+          
+          <p className="text-[10px] text-slate-400 font-medium">
+            TravelGPT Travel Operations & Customer Experience Management Suite © {new Date().getFullYear()} • All Rights Reserved.
+          </p>
+        </div>
       </footer>
 
     </div>
