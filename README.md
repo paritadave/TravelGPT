@@ -164,47 +164,21 @@ npm run start
 
 ## 🌐 Deploying to Vercel
 
-### Option 1: Client-Only SPA Deployment (Simplest)
-Since TravelGPT contains an interactive UI that is fully operational client-side, you can deploy it directly as a single-page application (SPA):
+TravelGPT is configured out-of-the-box for **full-stack serverless deployment** on Vercel! 
 
-1. **Push your code** to a GitHub repository.
-2. Go to [Vercel](https://vercel.com/) and click **Add New > Project**.
-3. Import your GitHub repository.
-4. Configure the build parameters:
-   - **Framework Preset**: `Vite`
-   - **Build Command**: `vite build`
-   - **Output Directory**: `dist`
-5. Click **Deploy**.
+We have already created the necessary files for you:
+1. **/vercel.json**: Tells Vercel to route all `/api/*` endpoints to our serverless function and serve static assets/routes properly.
+2. **/api/index.ts**: Acts as the Serverless entry point, importing and exporting the Express backend `app` from `server.ts`.
 
-### Option 2: Full-Stack Vercel Serverless Functions
-To support the backend Express routing (including the AI compilation endpoints), configure Vercel Serverless routing:
+### Deployment Steps:
 
-Create a `vercel.json` file in your project root:
-```json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "server.ts",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "server.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/$1"
-    }
-  ]
-}
-```
+1. **Commit and Push** these changes to your GitHub repository.
+2. In the [Vercel Dashboard](https://vercel.com/), select your imported `travel-gpt` project.
+3. Go to **Settings > Environment Variables** and add your Gemini API Key:
+   - **Key**: `GEMINI_API_KEY`
+   - **Value**: *Your actual API key*
+4. Go to the **Deployments** tab, select your latest commit, and click **Redeploy**.
+5. Once complete, your backend APIs (such as `/api/gemini/inspire`) will run as fast, secure serverless functions, keeping your key fully hidden while providing dynamic itinerary generations!
 
 ---
 
