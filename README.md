@@ -62,7 +62,7 @@ TravelGPT uses a dual-engine architecture designed for separation of concerns, h
 graph TD
     User([Enterprise Travel Agent]) --> |Interacts| WebUI[Vite React 18 SPA]
     
-    subgraph Client Engine (React 18 + TS)
+    subgraph ClientEngine ["Client Engine (React 18 + TS)"]
         WebUI --> SVGMap[Interactive Global Lead Network SVG]
         WebUI --> Kanban[Kanban Pipeline Desk]
         WebUI --> Workspace[Workspace & Itinerary Editor]
@@ -73,7 +73,7 @@ graph TD
         AlarmEngine --> |NotificationAPI| Alert[Native OS Push Alerts]
     end
 
-    subgraph Full-Stack Server & AI Layer
+    subgraph FullStackServer ["Full-Stack Server & AI Layer"]
         WebUI --> |REST API Requests| ExpSrv[Express Server tsx/node]
         ExpSrv --> |GoogleGenAI TypeScript SDK| Gemini[Gemini 1.5/2.0 API Node]
     end
